@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>聊天室</title>
+		<!-- 重置样式 -->
+		<link rel="stylesheet" href="../css/reset.css">
+		<!-- icon -->
+		<link rel="stylesheet" href="../css/fonts.css">
+		<link rel="stylesheet" href="../js/jquery-weui/weui.min.css">
+		<link rel="stylesheet" href="../js/jquery-weui/jquery-weui.css">
+		<link rel="stylesheet" href="../css/main.css">
+	</head>
+	<body>
+		<div class="about-me-model">
+			<div class="top-wrapper">
+				<img class="wechat-avatar" src="../img/avatar.png" alt="avatar">
+				<span class="nickname">铠</span>
+				<i class="iconfont icon-next"></i>
+			</div>
+		</div>
+		<!-- 公共部分 -->
+		<div class="phone-footer">
+			<div class="chat">
+				<div class="icon-wrapper">
+					<i class="iconfont icon-weixin"></i>
+					<div class="bridge-wrapper">
+						<span class="bridge">2</span>
+					</div>
+				</div>
+				<p class="text">聊天</p>
+			</div>
+			<div class="custom-wrapper">
+				<div class="icon-wrapper">
+					<i class="iconfont icon-nickname selected"></i>
+				</div>
+				<p class="text selected">我</p>
+			</div>
+		</div>
+		<!-- 公共部分 -->
+		<script src="../js/jquery-3.3.1.min.js"></script>
+		<script src="../js/jquery-weui/jquery-weui.js"></script>
+		<script>
+			$(".chat").click(function() {
+				window.location.href = "../index.html";
+			});
+			
+			var oldNickname = $(".nickname").text();
+			$(".top-wrapper").click(function() {
+				$.prompt({
+					title: '编辑',
+					text: '昵称不可超过10个字',
+					input: oldNickname,
+					empty: false, // 是否允许为空
+					onOK: function(data) {
+						$.alert("修改成功");
+						$(".nickname").text(data);
+						oldNickname = data;
+					},
+					onCancel: function() {
+						//点击取消
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

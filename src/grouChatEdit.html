@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>聊天室</title>
+		<!-- 重置样式 -->
+		<link rel="stylesheet" href="../css/reset.css">
+		<!-- icon -->
+		<link rel="stylesheet" href="../css/fonts.css">
+		<link rel="stylesheet" href="../js/jquery-weui/weui.min.css">
+		<link rel="stylesheet" href="../js/jquery-weui/jquery-weui.css">
+		<link rel="stylesheet" href="../css/main.css">
+	</head>
+	<body>
+		<div class="group-chat-model">
+			<div class="top-wrapper">
+				<span class="cancel-text">取消</span>
+				<span class="select-group-text">选择群组</span>
+				<div class="complete-btn">完成</div>
+			</div>
+			<div class="search-wrapper">
+				<i class="iconfont icon-search"></i>
+				<input class="search-input" type="search" placeholder="搜索">
+			</div>
+			<div class="screening-wrapper">
+				<span class="screening-name">购车年限</span>
+				<div class="screening-value-wrapper">
+					<span class="screening-value" id="car-year">请选择购车年限</span>
+					<i class="iconfont icon-next"></i>
+				</div>
+			</div>
+			<div class="screening-wrapper">
+				<span class="screening-name">车型</span>
+				<div class="screening-value-wrapper">
+					<span class="screening-value" id="car-type">请选择车型</span>
+					<i class="iconfont icon-next"></i>
+				</div>
+			</div>
+			<div class="group-wrapper">
+				<p class="title">可选群组</p>
+				<div class="weui-cells weui-cells_checkbox">
+					<label for="s11" class="weui-cell weui-check__label">
+						<div class="weui-cell__hd">
+							<input id="s11" class="weui-check" type="checkbox" name="groupCheckbox" value="湘A-8U8EA专属服务群">
+							<i class="weui-icon-checked"></i>
+						</div>
+						<img class="group-avatar" src="../img/avatar.png">
+						<div class="weui-cell__bd">
+							<p class="grou-name">张野+湘A7B214+帕杰罗+一组</p>
+						</div>
+					</label>
+					<label for="s12" class="weui-cell weui-check__label">
+						<div class="weui-cell__hd">
+							<input id="s12" class="weui-check" type="checkbox" name="groupCheckbox" value="湘A-8U8EA专属服务群2">
+							<i class="weui-icon-checked"></i>
+						</div>
+						<img class="group-avatar" src="../img/avatar.png">
+						<div class="weui-cell__bd">
+							<p class="grou-name">罗志熊+湘A88721+帕杰罗+二组</p>
+						</div>
+					</label>
+				</div>
+			</div>
+		</div>
+		<script src="../js/jquery-3.3.1.min.js"></script>
+		<script src="../js/jquery-weui/jquery-weui.js"></script>
+		<script>
+			$(".cancel-text").click(function() {
+				history.go(-1);
+			})
+			// 购车年限 Picker
+			$("#car-year").picker({
+				title: "购车年限",
+				cols: [{
+					textAlign: 'center',
+					values: ['1年以内', '1年-2年', '2年-3年', '3年-4年', '5年以上']
+				}],
+				onClose: function(data) {
+					let value = data.value[0];
+					$("#car-year").text(value);
+				}
+			});
+			
+			// 车型 Picker
+			$("#car-type").picker({
+				title: "车型",
+				cols: [{
+					textAlign: 'center',
+					values: ['奕歌', '帕杰罗', '欧蓝德']
+				}],
+				onClose: function(data) {
+					let value = data.value[0];
+					$("#car-type").text(value);
+				}
+			});
+			
+			$(".complete-btn").click(function() {
+				window.location.href = "groupMessage.html";
+				
+				// 获取选中的群组
+				var groupSelected = [];
+				$("input[name=groupCheckbox]:checked").each(function() {
+					groupSelected.push($(this).val());
+				});
+			});
+			
+			// 模糊查询
+			var search_input = $(".search-input"),
+				search_content = $(".item .right .chat-name");
+			$(search_input).on("keyup", function() {
+				if (search_input.val() == '') {
+					$(".weui-check__label").show();
+				}
+				$(".weui-check__label .weui-cell__bd .grou-name:contains(" + search_input.val().trim() + ")").parent().parent().show();
+				$(".weui-check__label .weui-cell__bd .grou-name:not(:contains(" + search_input.val().trim() + "))").parent().parent().hide();
+			});
+		</script>
+	</body>
+</html>

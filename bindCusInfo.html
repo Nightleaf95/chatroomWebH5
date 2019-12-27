@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>聊天室</title>
+		<!-- 重置样式 -->
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="bind-model">
+			<div class="content">
+				<img class="gmmc-logo" src="img/gmmc-logo.png" alt="广汽三菱">
+				<form class="form-wrapper" action="">
+					<div class="phone-wrapper">
+						<input class="phone-input" type="number" name="phoneNumber" placeholder="请输入手机号">
+					</div>
+					<div class="phone-wrapper">
+						<input class="phone-input" type="number" name="code" placeholder="请输入验证码">
+						<span class="get-code" id="getCode" onclick="sendemail()">获取验证码</span>
+					</div>
+					<input id="sure-submit" class="submit-btn" type="button" value="绑定">
+				</form>
+			</div>
+		</div>
+		<script src="plugin/weui-master/js/zepto.min.js"></script>
+		<script>
+			var countdown = 60;
+
+			function sendemail() {
+				var obj = $("#getCode");
+				settime(obj);
+			}
+
+			function settime(obj) { //发送验证码倒计时
+				if (countdown == 0) {
+					obj.attr('disabled', false);
+					//obj.removeattr("disabled"); 
+					obj.text("获取验证码");
+					obj.removeClass('hadCode');
+					countdown = 60;
+					return;
+				} else {
+					obj.attr('disabled', true);
+					obj.addClass('hadCode');
+					obj.text("重新发送(" + countdown + ")");
+					countdown--;
+				}
+				setTimeout(function() {
+					settime(obj)
+				}, 1000)
+			}
+			
+			$("#sure-submit").click(function () {
+				window.location.href = "index.html";
+			})
+		</script>
+	</body>
+</html>

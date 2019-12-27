@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>聊天室</title>
+		<!-- 重置样式 -->
+		<link rel="stylesheet" href="css/reset.css">
+		<!-- icon -->
+		<link rel="stylesheet" href="css/fonts.css">
+		<link rel="stylesheet" href="js/jquery-weui/weui.min.css">
+		<link rel="stylesheet" href="js/jquery-weui/jquery-weui.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="phone-model">
+			<div class="phone-header">
+				<span class="car-number">聊天室</span>
+				<!-- <i id="grou-chat-btn" class="iconfont icon-addto"></i> -->
+			</div>
+			<div class="phone-content">
+				<div class="search-wrapper">
+					<i class="iconfont icon-search"></i>
+					<input class="search-input" type="search" autocomplete="off" placeholder="搜索">
+				</div>
+				<div class="chat-wrapper">
+					<div class="item">
+						<div class="left">
+							<div class="avatar"><i class="iconfont icon-respond"></i><span class="tipdot"></span></div>
+						</div>
+						<div class="right">
+							<div class="top-part">
+								<span class="chat-name">BBBB</span>
+								<span class="date">下午2:24</span>
+							</div>
+							<div class="bottom-part"><span class="message-text">[<span class="num">52</span></span>条]您好，我们是您的专属团队，欢迎您加入我们的大家庭，我们会为您提供最优质的服务！</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="left">
+							<div class="avatar"><i class="iconfont icon-respond"></i><span class="tipdot"></span></div>
+						</div>
+						<div class="right">
+							<div class="top-part">
+								<span class="chat-name">湘A-8U8EA专属服务群</span>
+								<span class="date">下午2:24</span>
+							</div>
+							<div class="bottom-part"><span class="at-text">[有人@我]</span>您好，我们是您的专属团队，欢迎您加入我们的大家庭，我们会为您提供最优质的服务！</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 发起群聊框 -->
+			<div class="animated fadeIn group-chat" style="display: none;">
+				<div class="triangle"></div>
+				<div class="group-chat-wrapper">
+					<i class="iconfont icon-respond"></i>
+					<span class="text">群发消息</span>
+				</div>
+			</div>
+			<!-- 发起群聊框 -->
+
+			<!-- 公共部分 -->
+			<div class="phone-footer">
+				<div class="chat">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-weixin selected"></i>
+						<div class="bridge-wrapper">
+							<span class="bridge">2</span>
+						</div>
+					</div>
+					<p class="text weixin-text selected">聊天</p>
+				</div>
+				<div class="custom-wrapper">
+					<div class="icon-wrapper">
+						<i class="iconfont icon-nickname"></i>
+					</div>
+					<p class="text">我</p>
+				</div>
+			</div>
+			<!-- 公共部分 -->
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery-weui/jquery-weui.js"></script>
+		<script>
+			$("#item01").click(function() {
+				window.location.href = 'src/chatMain.html';
+			});
+
+			// 打开发起群聊
+			$("#grou-chat-btn").click(function() {
+				if ($('.group-chat').is(':hidden')) {
+					$(".group-chat").show();
+				} else {
+					$(".group-chat").hide();
+				}
+			});
+
+			// 打开发送群聊编辑内容
+			$(".group-chat").click(function() {
+				window.location.href = "src/grouChatEdit.html"
+			});
+
+			$(".custom-wrapper").click(function() {
+				window.location.href = "src/abouMe.html";
+			});
+
+			// 模糊查询
+			var search_input = $(".search-input"),
+				search_content = $(".item .right .chat-name");
+			$(search_input).on("keyup", function() {
+				if (search_input.val() == '') {
+					$(".item").show();
+				}
+				$(".item .right .chat-name:contains(" + search_input.val().trim() + ")").parent().parent().parent().show();
+				$(".item .right .chat-name:not(:contains(" + search_input.val().trim() + "))").parent().parent().parent().hide();
+			});
+		</script>
+	</body>
+</html>
