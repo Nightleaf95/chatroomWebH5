@@ -569,6 +569,22 @@
 .chat-model .chat-wrapper #chat-content {
   padding-top: 0.625rem;
 }
+.chat-model .chat-wrapper #chat-content .atTipWrapper {
+  position: fixed;
+  right: 0.3125rem;
+  top: 3.75rem;
+  background: #fff;
+  color: #259b24;
+  z-index: 20;
+  padding: 0.3125rem 0.9375rem;
+  -webkit-box-shadow: 0 2px 10px #ccc;
+          box-shadow: 0 2px 10px #ccc;
+  border-radius: 2.5rem;
+  cursor: pointer;
+}
+.chat-model .chat-wrapper #chat-content .atTipWrapper .text {
+  font-size: 0.8125rem;
+}
 .chat-model .chat-wrapper #chat-content .date {
   text-align: center;
   color: #aaaaaa;
@@ -1228,6 +1244,12 @@
   font-size: 0.875rem;
   color: #999;
   padding: 10px 15px 4px 15px;
+}
+.group-chat-model .group-wrapper .title .allSelect,
+.group-chat-model .group-wrapper .title .notSelect {
+  color: #537dc8;
+  margin-left: 10px;
+  font-size: 0.75rem;
 }
 .group-chat-model .group-wrapper .weui-cells {
   margin-top: 0;

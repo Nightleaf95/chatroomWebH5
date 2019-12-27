@@ -40,7 +40,11 @@
 				</div>
 			</div>
 			<div class="group-wrapper">
-				<p class="title">可选群组</p>
+				<div class="title">
+					<span>可选群组</span>
+					<span class="allSelect">全选</span>
+					<span class="notSelect">全不选</span>
+				</div>
 				<div class="weui-cells weui-cells_checkbox">
 					<label for="s11" class="weui-cell weui-check__label">
 						<div class="weui-cell__hd">
@@ -116,6 +120,19 @@
 				}
 				$(".weui-check__label .weui-cell__bd .grou-name:contains(" + search_input.val().trim() + ")").parent().parent().show();
 				$(".weui-check__label .weui-cell__bd .grou-name:not(:contains(" + search_input.val().trim() + "))").parent().parent().hide();
+			});
+
+			// 全选群组
+			$(".allSelect").click(function(){
+				$("input[name=groupCheckbox]").each(function() {
+					$(this).attr('checked', true);
+				});
+			});
+			// 全不选群组
+			$(".notSelect").click(function(){
+				$("input[name=groupCheckbox]").each(function() {
+					$(this).removeAttr('checked');
+				});
 			});
 		</script>
 	</body>

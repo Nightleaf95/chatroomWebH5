@@ -464,6 +464,21 @@
 		}
 		#chat-content {
 			padding-top: 0.625rem;
+			.atTipWrapper{
+				position: fixed;
+				right: 0.3125rem;
+				top: 3.75rem;
+				background: #fff;
+				color: @icon-green-color;
+				z-index: 20;
+				padding: 0.3125rem 0.9375rem;
+				box-shadow: 0 2px 10px #ccc;
+				border-radius: 2.5rem;
+				cursor: pointer;
+				.text{
+					font-size: 0.8125rem;
+				}
+			}
 			.date {
 				text-align: center;
 				color: @text-color;
@@ -988,6 +1003,11 @@
 			font-size: 0.875rem;
 			color: #999;
 			padding: 10px 15px 4px 15px;
+			.allSelect,.notSelect{
+				color: @blue-color;
+				margin-left: 10px;
+				font-size: 0.75rem;
+			}
 		}
 		.weui-cells {
 			margin-top: 0;
