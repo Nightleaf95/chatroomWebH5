@@ -749,6 +749,7 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.4);
+  z-index: 30;
 }
 .chat-model .member-wrapper .members {
   padding: 15px;

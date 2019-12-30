@@ -129,23 +129,23 @@
 				<div class="content">
 					<div class="item">
 						<img class="icon-wrapper" src="../img/avatar.png">
-						<div class="role-name">服务顾问</div>
+						<div class="role-name" data-id="0">服务顾问</div>
 					</div>
 					<div class="item">
 						<img class="icon-wrapper" src="../img/avatar.png">
-						<div class="role-name">组合服务顾问</div>
+						<div class="role-name" data-id="1">组合服务顾问</div>
 					</div>
 					<div class="item">
 						<img class="icon-wrapper" src="../img/avatar.png">
-						<div class="role-name">保险顾问</div>
+						<div class="role-name" data-id="2">保险顾问</div>
 					</div>
 					<div class="item">
 						<img class="icon-wrapper" src="../img/avatar.png">
-						<div class="role-name">续保专员</div>
+						<div class="role-name" data-id="3">续保专员</div>
 					</div>
 					<div class="item">
 						<img class="icon-wrapper" src="../img/avatar.png">
-						<div class="role-name">销售顾问</div>
+						<div class="role-name" data-id="4">销售顾问</div>
 					</div>
 				</div>
 			</div>
@@ -218,8 +218,9 @@
 
 		// 判断滚动条是否在置顶 若在置顶时 再网上滑动则加载更多聊天消息
 		$(".chat-wrapper").scroll(function () {
-
+			let msgText = '<div class="right-chat"><div class="chat-position-wrapper"><span class="unread">未读</span><div class="content-box">你好你好</div></div><img class="avatar" src="../img/avatar.png"></div>';
 			if ($(".chat-wrapper").scrollTop() <= 0) {
+				$("#chat-content").find(".atTipWrapper").after(msgText);
 				console.log("滚动条已经到达顶部");
 			}
 		});
@@ -233,11 +234,18 @@
 
 		// 点击@群聊成员 往聊天框文本中加入@成员名称
 		$("#member-wrapper .item").click(function () {
-			console.log(oldTextareaValue);
 			let rolename = $(this).find(".role-name").text();
-			let newTextareaValue = oldTextareaValue + '@' + rolename + ' ';
-			$("#write-input").val(newTextareaValue);
-			oldTextareaValue = newTextareaValue;
+			let newTextareaValue = oldTextareaValue + '@' + rolename; // 点击成员的名称
+			let roleId = $(this).find(".role-name").attr('data-id'); // 点击成员的ID
+			console.log(newTextareaValue, roleId);
+			$('#member-wrapper').hide(); // 隐藏选择成员框
+			// 在聊天框内增加@成员的聊天内容
+			let msgText = '<div class="right-chat"><div class="chat-position-wrapper"><span class="unread">未读</span><div class="content-box">' + newTextareaValue + '</div></div><img class="avatar" src="../img/avatar.png"></div>';
+			$("#chat-content").append(msgText);
+			// 使滚动条置底
+			let chatContentHeight = $('#chat-content').innerHeight();
+			let onlineNumDetailHeight = $('.online-num-detail').innerHeight();
+			$('.chat-wrapper').scrollTop(chatContentHeight + onlineNumDetailHeight);
 		});
 
 		// 判断是否有@我的消息
